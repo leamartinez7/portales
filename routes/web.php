@@ -18,6 +18,9 @@ Route::get('/productos/listado', [App\Http\Controllers\ProductosController::clas
 Route::get('/productos/crear', [App\Http\Controllers\ProductosController::class, 'crear'])
 ->name('productos.crear');
 
+Route::post('/productos/crear', [App\Http\Controllers\ProductosController::class, 'publicar'])
+->name('productos.publicar');
+
 Route::get('/productos/{id}', [App\Http\Controllers\ProductosController::class, 'ver'])
 ->name('productos.ver')
 ->whereNumber('id');
