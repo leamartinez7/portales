@@ -11,6 +11,7 @@
     <x-slot:title>Productos</x-slot>
 
     <h1 class="mb-4">Todos los productos</h1>
+    <p><a class="mb-3" href="{{ route('productos.crear') }}">Cargar nuevo producto</a></p>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach($productos as $producto)

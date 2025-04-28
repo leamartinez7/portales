@@ -22,4 +22,9 @@ class ProductosController extends Controller
             'producto' => Producto::findOrFail($id)
         ]);
     }
+
+    public function crear(){
+        return view('productos.crear');
+    }
+
 }
