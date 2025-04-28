@@ -15,6 +15,7 @@
     <table class="table table-bordered table-striped">
     <thead>
         <tr>
+            <th>ID</th>
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Categoría</th>
@@ -28,8 +29,9 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($productos as $producto): ?>
+        @foreach($productos as $producto)
             <tr>
+                <td>{{ $producto->producto_id }}</td>
                 <td>{{ $producto->nombre }}</td>
                 <td>{{ $producto->descripcion }}</td>
                 <td>{{ $producto->categoria }}</td>
@@ -41,9 +43,10 @@
                 <td>
                     <img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}" width="100">
                 </td>
-                <td>Coming soon&trade;</td>
+                <td><a href="{{ route('productos.ver', ['id' => $producto->producto_id]) }}" class="btn btn-primary">Ver</a>
+                </td>
             </tr>
-        <?php endforeach; ?>
+        @endforeach
     </tbody>
 </table>
 
