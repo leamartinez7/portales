@@ -43,6 +43,6 @@ class ProductosController extends Controller
         $producto->save();
         return redirect()
         ->route('productos.index')
-        ->with('feedback.message', "Producto agregado correctamente al catálogo");
+        ->with('feedback.message', 'Producto "' . e($input['nombre']) . '" agregado correctamente al catálogo');
     }
 }
