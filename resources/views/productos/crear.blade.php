@@ -1,15 +1,40 @@
+<?PHP 
+/**
+ * @var \Illuminate\Support\ViewErrorBag $errors
+ */
+?>
+
+
 <x-layout>
 
     <x-slot:title>Crear producto</x-slot>
 
     <h1>Crear nuevo producto</h1>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">La información ingresada contiene errores, por favor, revise los campos e intente nuevamente.
+        </div>
+    @endif
+
+
+
     <form action="{{ route('productos.publicar') }}" method="post">
         @csrf
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" id="nombre" name="nombre" class="form-control">
+            <input 
+                type="text" id="nombre" name="nombre" 
+                class="form-control @error('nombre') is-invalid @enderror"
+                @error('nombre') 
+                    aria-invalid="true" 
+                    aria-errormessage="error-nombre" 
+                @enderror>
+
+            @error('nombre')
+            <div id="error-nombre" class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
+
 
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción</label>

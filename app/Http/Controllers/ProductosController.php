@@ -28,21 +28,29 @@ class ProductosController extends Controller
     }
 
     public function publicar(Request $request){
-        $input = $request->all();
 
+        $request->validate([
+            'nombre' => ['required', 'string', 'min:3'],
+            'descripcion' => ['required', 'string', 'min:10'],
+            'categoria' => ['required', 'string', 'min:3'],
+            'precio' => ['required', 'numeric', 'min:0'],
+            'material' => ['required', 'string', 'min:3'],
+            'dimensiones' => ['required', 'string', 'min:3'],
+            'peso' => ['required', 'numeric', 'min:0'],
+            'fecha_lanzamiento' => ['required', 'date'],
+        ]);
+        
+
+        $input = $request->all();
+    
         $producto = new Producto();
-        $producto->nombre = $input['nombre'];
-        $producto->descripcion = $input['descripcion'];
-        $producto->categoria = $input['categoria'];
-        $producto->precio = $input['precio'];
-        $producto->material = $input['material'];
-        $producto->dimensiones = $input['dimensiones'];
-        $producto->peso = $input['peso'];
-        $producto->fecha_lanzamiento = $input['fecha_lanzamiento'];
+        $producto->fill($input);
         $producto->imagen = '/images/default.png';
         $producto->save();
+    
         return redirect()
-        ->route('productos.index')
-        ->with('feedback.message', 'Producto "' . e($input['nombre']) . '" agregado correctamente al catálogo');
+            ->route('productos.index')
+            ->with('feedback.message', 'Producto "' . $input['nombre'] . '" agregado correctamente al catálogo');
     }
+    
 }
