@@ -10,45 +10,27 @@
 
     <x-slot:title>Productos</x-slot>
 
-    <h1>Todos los productos</h1>
+    <h1 class="mb-4">Todos los productos</h1>
 
-    <table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Categoría</th>
-            <th>Precio</th>
-            <th>Material</th>
-            <th>Dimensiones</th>
-            <th>Peso</th>
-            <th>Fecha de Lanzamiento</th>
-            <th>Imagen</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach($productos as $producto)
-            <tr>
-                <td>{{ $producto->producto_id }}</td>
-                <td>{{ $producto->nombre }}</td>
-                <td>{{ $producto->descripcion }}</td>
-                <td>{{ $producto->categoria }}</td>
-                <td>${{ $producto->precio }}</td>
-                <td>{{ $producto->material }}</td>
-                <td>{{ $producto->dimensiones }}</td>
-                <td>{{ $producto->peso }} kg</td>
-                <td>{{ $producto->fecha_lanzamiento }}</td>
-                <td>
-                    <img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}" width="100">
-                </td>
-                <td><a href="{{ route('productos.ver', ['id' => $producto->producto_id]) }}" class="btn btn-primary">Ver</a>
-                </td>
-            </tr>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ $producto->imagen }}" class="card-img-top" alt="{{ $producto->nombre }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h2 class="h4 card-title">{{ $producto->nombre }}</h2>
+                        <p class="card-text text-muted">{{ $producto->categoria }}</p>
+                        <p class="card-text fw-bold text-success">${{ $producto->precio }}</p>
+                        <div class="mt-auto">
+                            <a href="{{ route('productos.ver', ['id' => $producto->producto_id]) }}" class="btn btn-primary w-100">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endforeach
-    </tbody>
-</table>
-
+    </div>
 
 </x-layout>
+
+
+
