@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('peso');
             $table->date('fecha_lanzamiento');
             $table->string('imagen');
-            $table->unsignedInteger('stock');
             $table->timestamps();
         });
     }
