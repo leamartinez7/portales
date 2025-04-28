@@ -21,6 +21,12 @@ Route::get('/productos/crear', [App\Http\Controllers\ProductosController::class,
 Route::post('/productos/crear', [App\Http\Controllers\ProductosController::class, 'publicar'])
 ->name('productos.publicar');
 
+// Route::post('/productos/{id}/eliminar', [App\Http\Controllers\ProductosController::class, 'eliminar'])
+// ->name('productos.eliminar');
+
+Route::delete('/productos/{id}/eliminar', [App\Http\Controllers\ProductosController::class, 'eliminar'])
+->name('productos.eliminar');
+
 Route::get('/productos/{id}', [App\Http\Controllers\ProductosController::class, 'ver'])
 ->name('productos.ver')
 ->whereNumber('id');

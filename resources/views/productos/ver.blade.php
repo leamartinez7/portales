@@ -37,6 +37,17 @@
             <div class="mt-auto">
                 <button class="btn btn-primary btn-lg w-100 mt-3" disabled>Add to Cart</button>
             </div>
+
+
+            <!-- Botón de eliminar -->
+            <form action="{{ route('productos.eliminar', ['id' => $producto->producto_id]) }}" method="POST" class="mt-3">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-lg w-100">
+                    Eliminar producto
+                </button>
+            </form>
+
         </div>
     </div>
 

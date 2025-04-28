@@ -38,20 +38,35 @@ class ProductosController extends Controller
             'dimensiones' => ['required', 'string', 'min:3'],
             'peso' => ['required', 'numeric', 'min:0'],
             'fecha_lanzamiento' => ['required', 'date'],
-        ],
-        [
+        ], [
             'nombre.required' => 'El nombre es obligatorio.',
-            'descripcion.required' => 'La descripción es obligatoria.',
-            'categoria.required' => 'La categoria es obligatoria.',
-            'precio.required' => 'El precio es obligatorio.',
-            'material.required' => 'El material es obligatorio.',
-            'dimensiones.required' => 'Las dimensiones son obligatorias.',
-            'peso.required' => 'El peso es obligatorio.',
-            'fecha_lanzamiento.required' => 'La fecha de lanzamiento es obligatoria.',
-        ]
-    );
+            'nombre.min' => 'El nombre debe tener al menos 3 caracteres.',
         
-
+            'descripcion.required' => 'La descripción es obligatoria.',
+            'descripcion.min' => 'La descripción debe tener al menos 10 caracteres.',
+        
+            'categoria.required' => 'La categoría es obligatoria.',
+            'categoria.min' => 'La categoría debe tener al menos 3 caracteres.',
+        
+            'precio.required' => 'El precio es obligatorio.',
+            'precio.numeric' => 'El precio debe ser un número.',
+            'precio.min' => 'El precio no puede ser negativo.',
+        
+            'material.required' => 'El material es obligatorio.',
+            'material.min' => 'El material debe tener al menos 3 caracteres.',
+        
+            'dimensiones.required' => 'Las dimensiones son obligatorias.',
+            'dimensiones.min' => 'Las dimensiones deben tener al menos 3 caracteres.',
+        
+            'peso.required' => 'El peso es obligatorio.',
+            'peso.numeric' => 'El peso debe ser un número.',
+            'peso.min' => 'El peso no puede ser negativo.',
+        
+            'fecha_lanzamiento.required' => 'La fecha de lanzamiento es obligatoria.',
+            'fecha_lanzamiento.date' => 'Debe ingresar una fecha válida.',
+        ]);
+        
+    
         $input = $request->all();
     
         $producto = new Producto();
@@ -62,6 +77,15 @@ class ProductosController extends Controller
         return redirect()
             ->route('productos.index')
             ->with('feedback.message', 'Producto "' . $input['nombre'] . '" agregado correctamente al catálogo');
+    }
+    
+    public function eliminar (int $id){
+        $producto = Producto::findOrFail($id);
+        $producto->delete($id);
+    
+        return redirect()
+            ->route('productos.index')
+            ->with('feedback.message', 'Producto "' . $producto->nombre . '" eliminado correctamente del catálogo');
     }
     
 }
