@@ -38,7 +38,18 @@ class ProductosController extends Controller
             'dimensiones' => ['required', 'string', 'min:3'],
             'peso' => ['required', 'numeric', 'min:0'],
             'fecha_lanzamiento' => ['required', 'date'],
-        ]);
+        ],
+        [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'descripcion.required' => 'La descripción es obligatoria.',
+            'categoria.required' => 'La categoria es obligatoria.',
+            'precio.required' => 'El precio es obligatorio.',
+            'material.required' => 'El material es obligatorio.',
+            'dimensiones.required' => 'Las dimensiones son obligatorias.',
+            'peso.required' => 'El peso es obligatorio.',
+            'fecha_lanzamiento.required' => 'La fecha de lanzamiento es obligatoria.',
+        ]
+    );
         
 
         $input = $request->all();
