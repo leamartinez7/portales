@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Container\Attributes\DB;
+// use Illuminate\Container\Attributes\DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -25,6 +26,8 @@ class ProductoSeeder extends Seeder
                 'peso' => 'Peso 1',
                 'fecha_lanzamiento' => '2023-05-01',
                 'imagen' => 'imagen1.jpg',  
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'producto_id' => 2,
@@ -37,6 +40,8 @@ class ProductoSeeder extends Seeder
                 'peso' => 'Peso 2',
                 'fecha_lanzamiento' => '2023-05-02',
                 'imagen' => 'imagen2.jpg',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'producto_id' => 3,
@@ -49,6 +54,8 @@ class ProductoSeeder extends Seeder
                 'peso' => 'Peso 3',
                 'fecha_lanzamiento' => '2023-05-03',
                 'imagen' => 'imagen3.jpg',
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
     }
