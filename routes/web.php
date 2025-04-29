@@ -24,6 +24,11 @@ Route::get('productos/{id}/eliminar', [App\Http\Controllers\ProductosController:
 Route::delete('/productos/{id}/eliminar', [App\Http\Controllers\ProductosController::class, 'eliminar'])
 ->name('productos.eliminar');
 
+Route::get('/productos/{id}/editar', [App\Http\Controllers\ProductosController::class, 'editar'])
+->name('productos.editar');
+
+Route::put('/productos/{id}/editar', [App\Http\Controllers\ProductosController::class, 'actualizar'])
+->name('productos.actualizar');
 
 Route::get('/productos/{id}', [App\Http\Controllers\ProductosController::class, 'ver'])
 ->name('productos.ver')
