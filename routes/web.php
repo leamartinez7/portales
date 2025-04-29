@@ -33,3 +33,9 @@ Route::put('/productos/{id}/editar', [App\Http\Controllers\ProductosController::
 Route::get('/productos/{id}', [App\Http\Controllers\ProductosController::class, 'ver'])
 ->name('productos.ver')
 ->whereNumber('id');
+
+Route::get('/iniciar-sesion', [App\Http\Controllers\AuthController::class, 'login'])
+->name('auth.login');
+
+Route::post('/iniciar-sesion', [App\Http\Controllers\AuthController::class, 'authenticate'])
+->name('auth.authenticate');
