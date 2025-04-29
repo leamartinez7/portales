@@ -39,3 +39,6 @@ Route::get('/iniciar-sesion', [App\Http\Controllers\AuthController::class, 'logi
 
 Route::post('/iniciar-sesion', [App\Http\Controllers\AuthController::class, 'authenticate'])
 ->name('auth.authenticate');
+
+Route::post('/cerrar-sesion', [App\Http\Controllers\AuthController::class, 'logout'])
+->name('auth.logout');

@@ -32,7 +32,7 @@
                     </li>
                     @auth
                     <li class="nav-item">
-                        <form action="{{ url('cerrar-sesión') }}" method="POST">
+                        <form action="{{ url('cerrar-sesion') }}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-link nav-link align-baseline"> {{ auth()->user()->email }}  (Cerrar sesión)</button>
                         </form>
