@@ -40,13 +40,9 @@
 
 
             <!-- Botón de eliminar -->
-            <form action="{{ route('productos.eliminar', ['id' => $producto->producto_id]) }}" method="POST" class="mt-3">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger btn-lg w-100">
-                    Eliminar producto
-                </button>
-            </form>
+            <a href="{{ route('productos.confirmar-eliminacion', ['id' => $producto->producto_id]) }}" class="btn btn-danger btn-lg w-100 mt-3">
+                Eliminar producto
+            </a>
 
         </div>
     </div>

@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])
 ->name('home');
 
@@ -21,11 +17,13 @@ Route::get('/productos/crear', [App\Http\Controllers\ProductosController::class,
 Route::post('/productos/crear', [App\Http\Controllers\ProductosController::class, 'publicar'])
 ->name('productos.publicar');
 
-// Route::post('/productos/{id}/eliminar', [App\Http\Controllers\ProductosController::class, 'eliminar'])
-// ->name('productos.eliminar');
+// agregada para confirmar elminar
+Route::get('productos/{id}/eliminar', [App\Http\Controllers\ProductosController::class, 'confirmarEliminacion'])
+->name('productos.confirmar-eliminacion');
 
 Route::delete('/productos/{id}/eliminar', [App\Http\Controllers\ProductosController::class, 'eliminar'])
 ->name('productos.eliminar');
+
 
 Route::get('/productos/{id}', [App\Http\Controllers\ProductosController::class, 'ver'])
 ->name('productos.ver')

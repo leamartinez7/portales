@@ -87,5 +87,11 @@ class ProductosController extends Controller
             ->route('productos.index')
             ->with('feedback.message', 'Producto "' . $producto->nombre . '" eliminado correctamente del catálogo');
     }
+
+    public function confirmarEliminacion(int $id){
+        return view('productos.confirmar-eliminacion', [
+            'producto' => Producto::findOrFail($id)
+        ]);
+    }
     
 }
