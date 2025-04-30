@@ -15,7 +15,8 @@
         <div class="alert alert-danger">La información ingresada contiene errores, por favor, revise los campos e intente nuevamente.</div>
     @endif
 
-    <form action="{{ route('productos.publicar') }}" method="post">
+    <form action="{{ route('productos.publicar') }}" method="post" enctype="multipart/form-data">
+        
         @csrf
 
         <!-- Campo Nombre -->

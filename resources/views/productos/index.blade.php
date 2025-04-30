@@ -5,7 +5,6 @@
  */
 ?>
 
-
 <x-layout>
 
     <x-slot:title>Productos</x-slot>
@@ -15,12 +14,15 @@
         <p><a class="mb-3" href="{{ route('productos.crear') }}">Cargar nuevo producto</a></p>
     @endauth
 
-
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach($productos as $producto)
             <div class="col">
                 <div class="card h-100">
-                    <img src="{{ $producto->imagen }}" class="card-img-top" alt="{{ $producto->nombre }}" style="height: 200px; object-fit: cover;">
+                    <img 
+                        src="{{ \Illuminate\Support\Facades\Storage::url($producto->imagen) }}" 
+                        class="card-img-top" 
+                        alt="{{ $producto->nombre }}" 
+                        style="height: 200px; object-fit: cover;">
                     <div class="card-body d-flex flex-column">
                         <h2 class="h4 card-title">{{ $producto->nombre }}</h2>
                         <p class="card-text text-muted">{{ $producto->categoria }}</p>
@@ -35,6 +37,3 @@
     </div>
 
 </x-layout>
-
-
-

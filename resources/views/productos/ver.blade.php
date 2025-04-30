@@ -15,7 +15,10 @@
 
     <div class="row">
         <div class="col-md-6">
-            <img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}" class="img-fluid rounded">
+            <img 
+            src="{{ \Illuminate\Support\Facades\Storage::url($producto->imagen) }}" 
+            alt="{{ $producto->nombre }}" 
+            class="img-fluid rounded">
         </div>
 
         <div class="col-md-6 d-flex flex-column">
@@ -25,7 +28,7 @@
             <h3 class="h5 mt-4">Detalles</h3>
             <ul class="list-unstyled">
                 <li><strong>Categoría:</strong> {{ $producto->categoria }}</li>
-                <li><strong>Material:</strong> {{ $producto->material }}</li>
+                <li><strong>Material:</strong> {{ $producto->material }}<   /li>
                 <li><strong>Dimensiones:</strong> {{ $producto->dimensiones }}</li>
                 <li><strong>Peso:</strong> {{ $producto->peso }} kg</li>
                 <li><strong>Fecha de lanzamiento:</strong> {{ $producto->fecha_lanzamiento }}</li>

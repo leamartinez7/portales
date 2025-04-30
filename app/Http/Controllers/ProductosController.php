@@ -68,10 +68,14 @@ class ProductosController extends Controller
         
     
         $input = $request->all();
+
+        if ($request->hasFile('imagen')) {
+            $input['imagen'] = $request->file('imagen')->store('imagenes', 'public');
+        }
     
         $producto = new Producto();
         $producto->fill($input);
-        $producto->imagen = '/images/default.png';
+        // $producto->imagen = '/imagenes/default.webp';
         $producto->save();
     
         return redirect()
