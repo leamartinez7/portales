@@ -70,12 +70,15 @@ class ProductosController extends Controller
         $input = $request->all();
 
         if ($request->hasFile('imagen')) {
+            //si se carga una imagen almacena
             $input['imagen'] = $request->file('imagen')->store('imagenes', 'public');
+        } else {
+            // si no se carga usa la imagen por defecto
+            $input['imagen'] = 'imagenes/default.webp';
         }
     
         $producto = new Producto();
         $producto->fill($input);
-        // $producto->imagen = '/imagenes/default.webp';
         $producto->save();
     
         return redirect()

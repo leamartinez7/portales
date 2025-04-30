@@ -15,10 +15,13 @@
 
     <div class="row">
         <div class="col-md-6">
-            <img 
-            src="{{ \Illuminate\Support\Facades\Storage::url($producto->imagen) }}" 
-            alt="{{ $producto->nombre }}" 
-            class="img-fluid rounded">
+
+        @if ($producto->imagen && \Illuminate\Support\Facades\Storage::exists($producto->imagen))
+            <img src="{{ \Illuminate\Support\Facades\Storage::url($producto->imagen) }}" alt="{{ $producto->nombre }}" class="img-fluid rounded">
+        @else
+            <img src="{{ asset('imagenes/default.jpg') }}" alt="Imagen por defecto" class="img-fluid rounded">
+        @endif
+
         </div>
 
         <div class="col-md-6 d-flex flex-column">
