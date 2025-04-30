@@ -12,23 +12,29 @@ Route::get('/productos/listado', [App\Http\Controllers\ProductosController::clas
 ->name('productos.index');
 
 Route::get('/productos/crear', [App\Http\Controllers\ProductosController::class, 'crear'])
-->name('productos.crear');
+->name('productos.crear')
+->middleware('auth');
 
 Route::post('/productos/crear', [App\Http\Controllers\ProductosController::class, 'publicar'])
-->name('productos.publicar');
+->name('productos.publicar')
+->middleware('auth');
 
 // agregada para confirmar elminar
 Route::get('productos/{id}/eliminar', [App\Http\Controllers\ProductosController::class, 'confirmarEliminacion'])
-->name('productos.confirmar-eliminacion');
+->name('productos.confirmar-eliminacion')
+->middleware('auth');
 
 Route::delete('/productos/{id}/eliminar', [App\Http\Controllers\ProductosController::class, 'eliminar'])
-->name('productos.eliminar');
+->name('productos.eliminar')
+->middleware('auth');
 
 Route::get('/productos/{id}/editar', [App\Http\Controllers\ProductosController::class, 'editar'])
-->name('productos.editar');
+->name('productos.editar')
+->middleware('auth');
 
 Route::put('/productos/{id}/editar', [App\Http\Controllers\ProductosController::class, 'actualizar'])
-->name('productos.actualizar');
+->name('productos.actualizar')
+->middleware('auth');
 
 Route::get('/productos/{id}', [App\Http\Controllers\ProductosController::class, 'ver'])
 ->name('productos.ver')

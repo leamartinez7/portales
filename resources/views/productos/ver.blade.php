@@ -38,7 +38,7 @@
                 <button class="btn btn-primary btn-lg w-100 mt-3" disabled>Agregar al carrito (coming soon)</button>
             </div>
 
-
+            @auth
             <!-- Botón de eliminar -->
             <a href="{{ route('productos.confirmar-eliminacion', ['id' => $producto->producto_id]) }}" class="btn btn-danger btn-lg w-100 mt-3">
                 Eliminar producto
@@ -48,6 +48,8 @@
             <a href="{{ route('productos.editar', ['id' => $producto->producto_id]) }}" class="btn btn-success btn-lg w-100 mt-3">
                 Editar producto
             </a>
+            @endauth
+
 
         </div>
     </div>

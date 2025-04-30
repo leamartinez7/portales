@@ -49,7 +49,8 @@
 
     <main class="container p-4">
     @if(session()->has('feedback.message'))
-        <div class="alert alert-success">{{ session()->get('feedback.message') }}</div>
+        <div class="alert alert-{{ session()->get('feedback.type', 'success') }}">
+            {!! session()->get('feedback.message') !!}</div>
     @endif
         {{ $slot }}
     </main>
