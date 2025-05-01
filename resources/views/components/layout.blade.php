@@ -67,8 +67,10 @@
     </main>
 
     <footer class="bg-dark text-white text-center p-3">
-        <p>Copyright &copy; Da Vinci 2024</p>
-    </footer>
+    <p>Copyright &copy; {{ date('Y') }} Iron & Wood Studio. Todos los derechos reservados.</p>
+    <p>Contactanos: info@ironandwoodstudio.com | +54 11 1234-5678</p>
+</footer>
+
 </div>
 
 
