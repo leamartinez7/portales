@@ -8,6 +8,9 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])
 Route::get('/quienes-somos', [App\Http\Controllers\AboutController::class, 'about'])
 ->name('about');
 
+Route::get('/blog', [App\Http\Controllers\BlogController::class, 'blog'])
+->name('blog');
+
 Route::get('/productos/listado', [App\Http\Controllers\ProductosController::class, 'index'])
 ->name('productos.index');
 

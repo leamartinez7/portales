@@ -16,41 +16,47 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Proyecto</a> 
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <!-- titulo (justificado a la izquierda) -->
+        <a class="navbar-brand" href="#">Iron & Wood Studio</a>
+
+        <!-- Toggler para pantallas pequeñas -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-            </button>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <x-nav-link route="home">Home</x-nav-link>
-                    </li>
-                    <li class="nav-item">
-                        <x-nav-link route="productos.index">Productos</x-nav-link>
-                    </li>
-                    <li class="nav-item">
-                        <x-nav-link route="about">About Us</x-nav-link>
-                    </li>
-                    @auth
-                    <li class="nav-item">
-                        <form action="{{ url('cerrar-sesion') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-link nav-link align-baseline"> {{ auth()->user()->email }}  (Cerrar sesión)</button>
-                        </form>
-                    </li>
-                    @else
-                    <li class="nav-item">
-                        <x-nav-link route="auth.login">Iniciar sesión</x-nav-link>
-                    </li>
-                    @endauth
-                </ul>
-            </div>
+        <!-- Enlaces de navegación (centrados en el medio) -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <x-nav-link route="home">Home</x-nav-link>
+                </li>
+                <li class="nav-item">
+                    <x-nav-link route="productos.index">Productos</x-nav-link>
+                </li>
+                <li class="nav-item">
+                    <x-nav-link route="blog">Blog</x-nav-link>
+                </li>
+                <li class="nav-item">
+                    <x-nav-link route="about">About Us</x-nav-link>
+                </li>
+            </ul>
         </div>
-    </nav>
+
+        <!-- Iniciar sesión (justificado a la derecha) -->
+        @auth
+            <form action="{{ url('cerrar-sesion') }}" method="POST" class="d-flex">
+                @csrf
+                <button type="submit" class="btn btn-link nav-link align-baseline">{{ auth()->user()->email }} (Cerrar sesión)</button>
+            </form>
+        @else
+            <x-nav-link route="auth.login" class="ml-auto">Iniciar sesión</x-nav-link>
+        @endauth
+    </div>
+</nav>
+
 
     <main class="container p-4">
     @if(session()->has('feedback.message'))
