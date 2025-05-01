@@ -8,7 +8,7 @@
         <div class="alert alert-danger">La información ingresada contiene errores, por favor, revise los campos e intente nuevamente.</div>
     @endif
 
-    <form action="{{ route('productos.actualizar', $producto->producto_id) }}" method="post">
+    <form action="{{ route('productos.actualizar', $producto->producto_id) }}" method="post" enctype="multipart/form-data">
 
         @csrf
         @method('PUT')
@@ -99,6 +99,22 @@
                 <div id="error-fecha_lanzamiento" class="text-danger">{{ $message }}</div>
             @enderror
         </div>
+
+        <!-- Imagen actual -->
+        <div class="mb-3">
+            <label class="form-label">Imagen actual</label>
+            <br>
+            
+            @if ($producto->imagen && \Illuminate\Support\Facades\Storage::exists($producto->imagen))
+                <img src="{{ \Illuminate\Support\Facades\Storage::url($producto->imagen) }}"
+                alt="{{ $producto->nombre }}"
+                class="img-fluid rounded" 
+                style="max-height: 200px;">
+            @else
+                <img src="{{ asset('storage/imagenes/default.webp') }}" alt="Imagen por defecto" class="img-fluid rounded" style="max-height: 200px;">
+            @endif
+        </div>
+
 
         <!-- Campo Imagen (Opcional) -->
         <div class="mb-3">

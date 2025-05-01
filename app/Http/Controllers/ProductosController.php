@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductosController extends Controller
 {
@@ -146,10 +147,23 @@ class ProductosController extends Controller
         ]);
 
         $producto = Producto::findOrFail($id);
-        $input = $request->except('imagen'); // Excluir la imagen del array POR AHORA !!!! SINO, ES $producto->update($request->all());
+        $input = $request->except(['_token', '_method']);
+        $imagenAnterior = $producto->imagen;
+        
+        if ($request->hasFile('imagen')) {
+            //si se carga una imagen almacena
+            $input['imagen'] = $request->file('imagen')->store('imagenes', 'public');
+        }
+
+        $producto->update($input);
     
-        $producto->fill($input);
-        $producto->save();
+        if(
+            $request->hasFile('imagen') &&
+            $imagenAnterior &&
+            Storage::exists($imagenAnterior)
+        ) {
+            Storage::delete($imagenAnterior);
+        }
         
         return redirect()
             ->route('productos.index')

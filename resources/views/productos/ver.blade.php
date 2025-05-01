@@ -31,7 +31,7 @@
             <h3 class="h5 mt-4">Detalles</h3>
             <ul class="list-unstyled">
                 <li><strong>Categoría:</strong> {{ $producto->categoria }}</li>
-                <li><strong>Material:</strong> {{ $producto->material }}<   /li>
+                <li><strong>Material:</strong> {{ $producto->material }}</li>
                 <li><strong>Dimensiones:</strong> {{ $producto->dimensiones }}</li>
                 <li><strong>Peso:</strong> {{ $producto->peso }} kg</li>
                 <li><strong>Fecha de lanzamiento:</strong> {{ $producto->fecha_lanzamiento }}</li>
