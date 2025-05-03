@@ -36,6 +36,13 @@
                 <li class="nav-item">
                     <x-nav-link route="productos.index">Productos</x-nav-link>
                 </li>
+                @auth
+                @if(auth()->user()->role === 'admin')  {{-- antes tenías role, ¡muy bien! --}}
+                    <li class="nav-item">
+                    <x-nav-link route="admin.usuarios">Usuarios</x-nav-link>
+                    </li>
+                @endif
+                @endauth
                 <li class="nav-item">
                     <x-nav-link route="blog">Blog</x-nav-link>
                 </li>

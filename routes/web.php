@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])
 ->name('home');
@@ -51,3 +52,8 @@ Route::post('/iniciar-sesion', [App\Http\Controllers\AuthController::class, 'aut
 
 Route::post('/cerrar-sesion', [App\Http\Controllers\AuthController::class, 'logout'])
 ->name('auth.logout');
+
+Route::middleware(['admin'])->group(function () {
+    Route::get('/admin/usuarios', [AdminController::class, 'index'])->name('admin.usuarios');
+    Route::get('usuarios/{id}', [UsuarioController::class, 'show'])->name('admin.usuarios.show');
+});

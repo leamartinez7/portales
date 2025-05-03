@@ -2,25 +2,33 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UsuarioSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        DB::table('users')->insert([
-            'id' => 1,
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => Hash::make('admin'),
-            'created_at' => now(),
-            'updated_at' => now(),
+        DB::table('usuarios')->insert([
+            [
+                'nombre' => 'admin',  // Aquí usamos 'nombre' en lugar de 'nombre_usuario'
+                'email' => 'admin@admin.com',
+                'password' => Hash::make('admin123'),
+                'role' => 'admin',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nombre' => 'usuario1',  // Aquí usamos 'nombre' en lugar de 'nombre_usuario'
+                'email' => 'usuario1@usuario.com',
+                'password' => Hash::make('usuario123'),
+                'role' => 'usuario',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
+
+
