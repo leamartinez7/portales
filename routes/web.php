@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EntradaController;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])
 ->name('home');
@@ -44,16 +46,25 @@ Route::get('/productos/{id}', [App\Http\Controllers\ProductosController::class, 
 ->name('productos.ver')
 ->whereNumber('id');
 
-Route::get('/iniciar-sesion', [App\Http\Controllers\AuthController::class, 'login'])
-->name('auth.login');
-
-Route::post('/iniciar-sesion', [App\Http\Controllers\AuthController::class, 'authenticate'])
-->name('auth.authenticate');
-
-Route::post('/cerrar-sesion', [App\Http\Controllers\AuthController::class, 'logout'])
+//registro y login
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('auth.authenticate');
+Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
+Route::post('/register', [AuthController::class, 'store'])->name('auth.store');
+Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::post('/cerrar-sesion', [AuthController::class, 'logout'])
 ->name('auth.logout');
 
+//admin y usuarios
 Route::middleware(['admin'])->group(function () {
     Route::get('/admin/usuarios', [AdminController::class, 'index'])->name('admin.usuarios');
     Route::get('usuarios/{id}', [UsuarioController::class, 'show'])->name('admin.usuarios.show');
 });
+
+//entrada
+Route::get('/entradas', [EntradaController::class, 'index'])->name('entradas.index');
+Route::get('/entradas/{entrada}', [EntradaController::class, 'show'])->name('entradas.show');
+Route::resource('entradas', EntradaController::class)->middleware('auth');
+
+
+

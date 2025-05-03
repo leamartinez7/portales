@@ -9,7 +9,7 @@ class CreateUsuariosTable extends Migration
     public function up()
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->id(); // usa 'id' si no querés complicar el modelo
+            $table->bigIncrements('usuario_id');
             $table->string('nombre');
             $table->string('email')->unique();
             $table->string('password');

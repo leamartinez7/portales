@@ -1,5 +1,4 @@
 <?php
-// app/Models/Usuario.php
 
 namespace App\Models;
 
@@ -10,12 +9,17 @@ class Usuario extends Authenticatable
 {
     protected $table = 'usuarios';
     protected $primaryKey = 'usuario_id';
+    public $incrementing = true; // Asegura que la clave primaria sea autoincremental
+    protected $keyType = 'int'; // Define el tipo de la clave primaria
+
     protected $fillable = ['nombre', 'email', 'password', 'role'];
 
-    public function compras(): HasMany
+    public function entradas()
     {
-        return $this->hasMany(Compra::class, 'usuario_id');
+        return $this->hasMany(Entrada::class, 'usuario_id', 'usuario_id');
     }
+
 }
+
 
 

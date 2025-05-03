@@ -52,14 +52,17 @@
             </ul>
         </div>
 
-        <!-- Iniciar sesión (justificado a la derecha) -->
+        <!-- Inicio y Registro (justificado a la derecha) -->
         @auth
             <form action="{{ url('cerrar-sesion') }}" method="POST" class="d-flex">
                 @csrf
-                <button type="submit" class="btn btn-link nav-link align-baseline">{{ auth()->user()->email }} (Cerrar sesión)</button>
+                <button type="submit" class="btn btn-link nav-link align-baseline">
+                    {{ auth()->user()->email }} (Cerrar sesión)
+                </button>
             </form>
         @else
             <x-nav-link route="auth.login" class="ml-auto">Iniciar sesión</x-nav-link>
+            <x-nav-link route="auth.register" class="ml-2">Registrarse</x-nav-link>
         @endauth
     </div>
 </nav>

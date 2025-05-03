@@ -1,5 +1,5 @@
 <?php
-
+//para cuando se cree la tabla de compras que iran en los detalles de cada usuario
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
